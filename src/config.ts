@@ -13,14 +13,14 @@ export const siteConfig = {
   skills: ["Javascript", "React", "Node.js", "Java", "AWS", "Docker", "Next.js", "TypeScript", "Spring Boot", "C#"],
   projects: [
     {
-      name: "AI Dev Roundup Newsletter",
+      name: "Walter",
       description:
         "One concise email. Five minutes. Every Tuesday. Essential AI news & trends, production-ready libraries, powerful AI tools, and real-world code examples",
-      link: "https://aidevroundup.com/?ref=devportfolio",
-      skills: ["React", "Node.js", "AWS"],
+      link: "https://github.com/juangg11/Walter",
+      skills: ["React", "Node.js", "Next.js"],
     },
     {
-      name: "Chrome Extension Mastery: Build Full-Stack Extensions with React & Node.js",
+      name: "Gamebox",
       description:
         "Master the art of building production-ready, full-stack Chrome Extensions using modern web technologies and best practices",
       link: "https://fullstackextensions.com/?ref=devportfolio",
@@ -68,24 +68,14 @@ export const siteConfig = {
   ],
   education: [
     {
-      school: "University Name",
-      degree: "Bachelor of Science in Computer Science",
-      dateRange: "2014 - 2018",
+      school: "IES Celia Viñas",
+      degree: "Desarrollo de Aplicaciones Web",
+      dateRange: "2024 - 2026",
       achievements: [
         "Graduated Magna Cum Laude with 3.8 GPA",
         "Dean's List all semesters",
         "President of Computer Science Club",
       ],
-    },
-    {
-      school: "Online Platform",
-      degree: "Full Stack Development Certificate",
-      dateRange: "2019",
-      achievements: [
-        "Completed 500+ hours of coursework",
-        "Built 10+ portfolio projects",
-        "Specialized in React and Node.js",
-      ],
-    },
+    }
   ],
 };
