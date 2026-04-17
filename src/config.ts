@@ -15,15 +15,15 @@ export const siteConfig = {
     {
       name: "Walter",
       description:
-        "One concise email. Five minutes. Every Tuesday. Essential AI news & trends, production-ready libraries, powerful AI tools, and real-world code examples",
+        "Red social basada en comunidades y foros con interacción en tiempo real mediante WebSockets. Permite la creación de hilos, comentarios anidados y un sistema de chat dinámico entre usuarios. Desarrollada con React y una arquitectura escalable para la gestión de contenido multimedia.",
       link: "https://github.com/juangg11/Walter",
       skills: ["React", "Node.js", "Next.js"],
     },
     {
       name: "Gamebox",
       description:
-        "Master the art of building production-ready, full-stack Chrome Extensions using modern web technologies and best practices",
-      link: "https://fullstackextensions.com/?ref=devportfolio",
+        "Plataforma de gestión de catálogos inspirada en Letterboxd, integrada con la API de RAWG para el descubrimiento de videojuegos. Incluye sistemas de puntuación personalizada y reseñas persistentes mediante Supabase. Resolví la sincronización de datos externos con bases de datos relacionales optimizando la integridad de cada entrada.",
+      link: "https://github.com/juangg11/Gamebox",
       skills: ["React", "Node.js", "AWS"],
     },
     {
