@@ -16,7 +16,7 @@ export const siteConfig = {
       name: "Walter",
       description:
         "Red social basada en comunidades y foros con interacción en tiempo real mediante WebSockets. Permite la creación de hilos, comentarios anidados y un sistema de chat dinámico entre usuarios. Desarrollada con React y una arquitectura escalable para la gestión de contenido multimedia.",
-      link: "https://github.com/juangg11/Walter",
+      link: "https://walter-weld-one.vercel.app",
       github: "https://github.com/juangg11/Walter",
       skills: ["React", "Node.js", "Next.js"],
     },
