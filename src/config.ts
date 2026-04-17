@@ -1,6 +1,6 @@
 export const siteConfig = {
   name: "Juan Garcia",
-  title: "Senior Software Engineer",
+  title: "Full Stack Developer",
   description: "Portfolio website of Juan Garcia",
   accentColor: "#b31dd8",
   social: {
@@ -9,7 +9,7 @@ export const siteConfig = {
     github: "https://github.com/juangg11",
   },
   aboutMe:
-    "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem quos asperiores nihil consequatur tempore cupiditate architecto natus commodi corrupti quas quasi facere est, dignissimos odit nam veniam sapiente ut, vitae eligendi ipsum dolor, nostrum ullam impedit! Corrupti ratione mollitia temporibus necessitatibus, consectetur reiciendis recusandae id, dolorum quaerat, vero pariatur. Ratione!",
+    "Desarrollador Full Stack en formación constante, con una sólida base técnica en JavaScript, Java y C#. Me apasiona transformar problemas complejos en soluciones en forma de aplicaciones web.",
   skills: ["Javascript", "React", "Node.js", "Java", "AWS", "Docker", "Next.js", "TypeScript", "Spring Boot", "C#"],
   projects: [
     {
@@ -17,6 +17,7 @@ export const siteConfig = {
       description:
         "Red social basada en comunidades y foros con interacción en tiempo real mediante WebSockets. Permite la creación de hilos, comentarios anidados y un sistema de chat dinámico entre usuarios. Desarrollada con React y una arquitectura escalable para la gestión de contenido multimedia.",
       link: "https://github.com/juangg11/Walter",
+      github: "https://github.com/juangg11/Walter",
       skills: ["React", "Node.js", "Next.js"],
     },
     {
@@ -24,6 +25,7 @@ export const siteConfig = {
       description:
         "Plataforma de gestión de catálogos inspirada en Letterboxd, integrada con la API de RAWG para el descubrimiento de videojuegos. Incluye sistemas de puntuación personalizada y reseñas persistentes mediante Supabase. Resolví la sincronización de datos externos con bases de datos relacionales optimizando la integridad de cada entrada.",
       link: "https://github.com/juangg11/Gamebox",
+      github: "https://github.com/juangg11/Gamebox",
       skills: ["React", "Node.js", "AWS"],
     },
     {
@@ -31,6 +33,7 @@ export const siteConfig = {
       description:
         "Kit to jump-start your Chrome extension projects with a variety of battle-tested starter templates & examples",
       link: "https://extensionkit.io/?ref=devportfolio",
+      github: "https://github.com/juangg11/ExtensionKit",
       skills: ["React", "Node.js", "AWS"],
     },
   ],
