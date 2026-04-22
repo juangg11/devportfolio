@@ -24,7 +24,7 @@ export const siteConfig = {
       name: "Gamebox",
       description:
         "Plataforma de gestión de catálogos inspirada en Letterboxd, integrada con la API de RAWG para el descubrimiento de videojuegos. Incluye sistemas de puntuación personalizada y reseñas persistentes mediante Supabase. Resolví la sincronización de datos externos con bases de datos relacionales optimizando la integridad de cada entrada.",
-      link: "https://github.com/juangg11/Gamebox",
+      link: "https://gamebox-sigma.vercel.app",
       github: "https://github.com/juangg11/Gamebox",
       skills: ["React", "Node.js", "AWS"],
     },
