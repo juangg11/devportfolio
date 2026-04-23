@@ -31,7 +31,7 @@ export const siteConfig = {
     {
       name: "CRM-app",
       description:
-        "Sistema CRM completo para la gestión de negocios locales (peluquerías y servicios), enfocado en la automatización de citas, gestión de clientes y facturación. Incluye calendario interactivo, control de disponibilidad en tiempo real, generación de tickets/facturas y panel de métricas. Implementé una arquitectura multi-tenant con persistencia en base de datos relacional, optimizando la consistencia de reservas y evitando conflictos de horario. Además, integré flujos automatizados de notificación y una base preparada para interacción vía WhatsApp.",
+        "Sistema CRM completo para la gestión de negocios como peluquerías, enfocado en la automatización de citas y gestión de clientes. Incluye calendario interactivo, control de disponibilidad en tiempo real y panel de métricas. Implementé una arquitectura multi-tenant con persistencia en base de datos relacional, optimizando la consistencia de reservas y evitando conflictos de horario.",
       link: "https://crm-react-bay.vercel.app",
       github: "https://github.com/juangg11/CRM-React",
       skills: ["React", "Node.js", "AWS"],
