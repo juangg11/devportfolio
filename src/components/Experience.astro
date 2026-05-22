@@ -5,60 +5,53 @@ const hasExperience = siteConfig.experience && siteConfig.experience.length > 0;
 
 {
   hasExperience && (
-    <section id="experience" class="p-8 sm:p-12 md:p-16 lg:p-24">
-      <div>
+    <section id="experience" class="p-8 sm:p-12 md:p-16 lg:p-24" style={`--accent-color: ${siteConfig.accentColor}`}>
+      <div class="reveal-section">
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-start">
+
           <div class="lg:col-span-4">
-            <h2 class="text-3xl sm:text-4xl md:text-5xl xl:text-7xl font-bold text-gray-900">
-              Experience
+            <h2 class="text-3xl sm:text-4xl md:text-5xl xl:text-7xl font-bold text-gray-900 tracking-tight leading-none">
+              Experi<br/>ence
             </h2>
-            <div
-              class="w-[75px] h-[5px] mt-2 rounded-full"
-              style={`background-color: ${siteConfig.accentColor}`}
-            />
+            <div class="w-8 h-1 mt-4 rounded-full" style={`background-color: ${siteConfig.accentColor}`} />
           </div>
 
           <div class="lg:col-span-8">
             <div class="relative">
+              {/* Vertical timeline line */}
+              <div class="absolute left-0 top-3 bottom-3 w-px bg-gradient-to-b from-transparent via-gray-200 to-transparent hidden sm:block" />
+
               {siteConfig.experience.map((exp, index) => (
-                <div class="relative mb-12 last:mb-0">
-                  {/* Timeline dot at top of card */}
+                <div
+                  class="exp-card relative pl-0 sm:pl-10 mb-10 last:mb-0"
+                  style={`animation-delay: ${index * 0.12}s`}
+                >
+                  {/* Timeline dot */}
                   <div
-                    class="absolute left-1/2 -top-2 w-4 h-4 bg-white border-2 rounded-full -translate-x-1/2 z-20 transition-all duration-300"
-                    style={`border-color: ${siteConfig.accentColor}; background-color: ${siteConfig.accentColor}`}
+                    class="hidden sm:block absolute left-0 top-3 w-2.5 h-2.5 rounded-full ring-4 ring-white -translate-x-[4px] z-10"
+                    style={`background-color: ${siteConfig.accentColor}`}
                   />
 
-                  {/* Connecting line below card */}
-                  {index < siteConfig.experience.length - 1 && (
-                    <div class="absolute left-1/2 bottom-0 w-0.5 h-12 bg-gray-300 -translate-x-1/2 translate-y-full z-10" />
-                  )}
-
-                  {/* Experience card */}
-                  <div class="bg-white rounded-lg shadow-sm border border-gray-100 p-4 sm:p-5 md:p-6 hover:shadow-md transition-shadow duration-300">
-                    <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-4">
+                  <div class="exp-inner bg-white rounded-xl border border-gray-100 p-5 sm:p-6 transition-all duration-300 hover:shadow-lg hover:border-gray-200 hover:-translate-y-0.5">
+                    <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between mb-4 gap-1">
                       <div>
-                        <h3 class="text-lg sm:text-xl font-semibold text-gray-900">
+                        <h3 class="text-base sm:text-lg font-semibold text-gray-900 leading-snug">
                           {exp.title}
                         </h3>
-                        <p
-                          class="text-base sm:text-lg"
-                          style={`color: ${siteConfig.accentColor}`}
-                        >
+                        <p class="text-sm sm:text-base font-medium mt-0.5" style={`color: ${siteConfig.accentColor}`}>
                           {exp.company}
                         </p>
                       </div>
-                      <span class="text-xs sm:text-sm text-gray-500 mt-2 sm:mt-0">
+                      <span class="inline-flex items-center px-2.5 py-1 rounded-md bg-gray-50 text-xs text-gray-500 font-medium whitespace-nowrap border border-gray-100 self-start">
                         {exp.dateRange}
                       </span>
                     </div>
 
-                    <ul class="space-y-2">
+                    <ul class="space-y-1.5">
                       {exp.bullets.map((bullet) => (
-                        <li class="flex items-start">
-                          <span class="inline-block w-1.5 h-1.5 rounded-full bg-gray-400 mt-2 mr-3 flex-shrink-0" />
-                          <span class="text-sm sm:text-base text-gray-600">
-                            {bullet}
-                          </span>
+                        <li class="flex items-start gap-3">
+                          <span class="mt-2 w-1 h-1 rounded-full bg-gray-300 flex-shrink-0" />
+                          <span class="text-sm sm:text-base text-gray-500 leading-relaxed">{bullet}</span>
                         </li>
                       ))}
                     </ul>
@@ -67,8 +60,52 @@ const hasExperience = siteConfig.experience && siteConfig.experience.length > 0;
               ))}
             </div>
           </div>
+
         </div>
       </div>
     </section>
   )
 }
+
+<style>
+  .reveal-section {
+    opacity: 0;
+    transform: translateY(32px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .reveal-section.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .exp-card {
+    opacity: 0;
+    transform: translateX(-8px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+  }
+  .reveal-section.visible .exp-card {
+    opacity: 1;
+    transform: translateX(0);
+    transition: opacity 0.5s ease var(--delay, 0s), transform 0.5s ease var(--delay, 0s), box-shadow 0.3s ease, border-color 0.3s ease;
+  }
+
+  .exp-inner {
+    box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+  }
+</style>
+
+<script>
+  const observer = new IntersectionObserver(
+    (entries) => entries.forEach((e) => {
+      if (e.isIntersecting) {
+        e.target.classList.add("visible");
+        const cards = e.target.querySelectorAll(".exp-card");
+        cards.forEach((card, i) => {
+          (card as HTMLElement).style.setProperty("--delay", `${i * 0.1}s`);
+        });
+      }
+    }),
+    { threshold: 0.08 }
+  );
+  document.querySelectorAll(".reveal-section").forEach((el) => observer.observe(el));
+</script>
