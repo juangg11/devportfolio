@@ -1,141 +1,206 @@
 ---
-import { siteConfig } from "../config";
-const hasProjects = siteConfig.projects && siteConfig.projects.length > 0;
+import { siteConfig } from '../config';
+import type { Lang } from '../i18n';
+import { t } from '../i18n';
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const hasProjects = siteConfig.projects?.length > 0;
 ---
 
-{
-  hasProjects && (
-    <section id="projects" class="p-8 sm:p-12 md:p-16 lg:p-24" style={`--accent-color: ${siteConfig.accentColor}`}>
-      <div class="reveal-section">
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-start">
+{hasProjects && (
+<section id="projects" class="section-base" aria-labelledby="projects-heading">
+  <div class="section-inner">
 
-          <div class="lg:col-span-4">
-            <h2 class="text-3xl sm:text-4xl md:text-5xl xl:text-7xl font-bold text-gray-900 tracking-tight leading-none">
-              Pro<br/>jects
-            </h2>
-            <div class="w-8 h-1 mt-4 rounded-full" style={`background-color: ${siteConfig.accentColor}`} />
+    <div class="section-label reveal-up">
+      <span class="label-line"></span>
+      <span class="label-text">{t(lang, 'projects.title')}</span>
+    </div>
+
+    <h2 id="projects-heading" class="section-display-title reveal-up">
+      {t(lang, 'projects.title')}
+    </h2>
+
+    <div class="projects-list">
+      {siteConfig.projects.map((project: any, index: number) => (
+        <article class="project-row reveal-up" style={`--delay: ${index * 0.1}s`}>
+
+          <div class="project-number">
+            <span class="num-text">{String(index + 1).padStart(2, '0')}</span>
           </div>
 
-          <div class="lg:col-span-8">
-            <div class="space-y-5">
-              {siteConfig.projects.map((project, index) => {
-                return (
-                  <div
-                    class="project-card group relative rounded-xl border border-gray-100 bg-white overflow-hidden transition-all duration-300 hover:shadow-xl hover:border-gray-200 hover:-translate-y-1"
-                  >
-                    {/* Accent top bar */}
-                    <div
-                      class="absolute top-0 left-0 right-0 h-0.5 scale-x-0 group-hover:scale-x-100 transition-transform duration-400 origin-left rounded-full"
-                      style={`background: linear-gradient(90deg, ${siteConfig.accentColor}, ${siteConfig.accentColor}88)`}
-                    />
-
-                    <div class="p-5 sm:p-6 md:p-7">
-                      <div class="flex items-start justify-between gap-4">
-                        <div class="flex-1 min-w-0">
-                          <span
-                            class="text-xs font-mono font-semibold tracking-widest"
-                            style={{ color: siteConfig.accentColor }}
-                          >
-                            {String(index + 1).padStart(2, '0')}
-                          </span>
-                          <h3 class="text-xl sm:text-2xl font-bold text-gray-900 mt-1 leading-snug">
-                            {project.name}
-                          </h3>
-                        </div>
-
-                        {/* Action buttons */}
-                        <div class="flex gap-2 flex-shrink-0">
-                          {project.link && (
-                            <a
-                              href={project.link}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              class="w-9 h-9 flex items-center justify-center rounded-full border border-gray-200 text-gray-500 transition-all duration-200 hover:bg-gray-900 hover:border-gray-900 hover:text-white hover:scale-105"
-                              title="Live demo"
-                            >
-                              <svg class="w-4 h-4 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 17L17 7M17 7H7M17 7V17"/>
-                              </svg>
-                            </a>
-                          )}
-                          {project.github && (
-                            <a
-                              href={project.github}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              class="w-9 h-9 flex items-center justify-center rounded-full border border-gray-200 text-gray-500 transition-all duration-200 hover:bg-gray-900 hover:border-gray-900 hover:text-white hover:scale-105"
-                              title="View source"
-                            >
-                              <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/>
-                                <path d="M9 18c-4.51 2-5-2-7-2"/>
-                              </svg>
-                            </a>
-                          )}
-                        </div>
-                      </div>
-
-                      <p class="mt-3 text-base sm:text-lg text-gray-500 leading-relaxed">
-                        {project.description}
-                      </p>
-
-                      {project.skills && project.skills.length > 0 && (
-                        <div class="flex flex-wrap gap-1.5 mt-4">
-                          {project.skills.map((skill) => (
-                            <span class="px-2.5 py-1 bg-gray-50 border border-gray-100 text-gray-600 rounded-md text-xs font-medium transition-colors duration-200 group-hover:border-gray-200">
-                              {skill}
-                            </span>
-                          ))}
-                        </div>
-                      )}
-                    </div>
-                  </div>
-                );
-              })}
+          <div class="project-body">
+            <div class="project-header">
+              <h3 class="project-name">{project.name}</h3>
+              <div class="project-links">
+                {project.github && (
+                  <a href={project.github} target="_blank" rel="noopener noreferrer"
+                    aria-label={t(lang, 'projects.source')} class="icon-btn" title={t(lang, 'projects.source')}>
+                    <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M9 19c-4.3 1.4-4.3-2.5-6-3m12 5v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6 0 0 0-1.3-3.2 4.2 4.2 0 0 0-.1-3.2s-1.1-.3-3.5 1.3a12.3 12.3 0 0 0-6.2 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.4 5.4 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/>
+                      <path d="M9 18c-4.51 2-5-2-7-2"/>
+                    </svg>
+                  </a>
+                )}
+                {project.link && (
+                  <a href={project.link} target="_blank" rel="noopener noreferrer"
+                    aria-label={t(lang, 'projects.live')} class="icon-btn" title={t(lang, 'projects.live')}>
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 17L17 7M17 7H7M17 7V17"/>
+                    </svg>
+                  </a>
+                )}
+              </div>
             </div>
+
+            <p class="project-desc">{project.description}</p>
+
+            {project.skills?.length > 0 && (
+              <div class="project-tags">
+                {project.skills.map((skill: string) => (
+                  <span class="tag">{skill}</span>
+                ))}
+              </div>
+            )}
           </div>
 
-        </div>
-      </div>
-    </section>
-  )
-}
+          <!-- Hover border animation -->
+          <div class="project-border-anim" aria-hidden="true"></div>
+        </article>
+      ))}
+    </div>
+
+  </div>
+</section>
+)}
 
 <style>
-  .reveal-section {
-    opacity: 0;
-    transform: translateY(32px);
-    transition: opacity 0.7s ease, transform 0.7s ease;
+  .section-base {
+    padding: 6rem 1.5rem;
+    background: #0c0c0e;
+    border-top: 1px solid rgba(255,255,255,0.05);
   }
-  .reveal-section.visible {
-    opacity: 1;
-    transform: translateY(0);
+  @media (min-width: 640px)  { .section-base { padding: 7rem 2.5rem; } }
+  @media (min-width: 1024px) { .section-base { padding: 9rem 4rem; } }
+
+  .section-inner { max-width: 72rem; margin: 0 auto; }
+
+  .section-label {
+    display: flex; align-items: center; gap: 1rem;
+    margin-bottom: 1.5rem;
+  }
+  .label-line { flex: 0 0 40px; height: 1px; background: linear-gradient(90deg, #fbbf24, rgba(251,191,36,0.2)); }
+  .label-text {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem; font-weight: 600;
+    letter-spacing: 0.2em; text-transform: uppercase;
+    color: #fbbf24;
   }
 
-  .project-card {
-    opacity: 0;
-    transform: translateY(16px);
-    transition: opacity 0.5s ease var(--delay, 0s), transform 0.5s ease var(--delay, 0s), box-shadow 0.3s ease, border-color 0.3s ease, translate 0.3s ease;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+  .section-display-title {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: clamp(3rem, 7vw, 6rem);
+    font-weight: 700; color: #fafafa;
+    line-height: 0.95; letter-spacing: -0.02em;
+    margin-bottom: 4rem;
   }
-  .reveal-section.visible .project-card {
-    opacity: 1;
-    transform: translateY(0);
+
+  /* Projects list */
+  .projects-list { display: flex; flex-direction: column; gap: 0; }
+
+  .project-row {
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    padding: 2rem 0;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+    cursor: default;
+    transition: background 0.3s ease;
+    overflow: hidden;
   }
+  @media (min-width: 768px) {
+    .project-row { grid-template-columns: 80px 1fr; gap: 2.5rem; padding: 2.5rem 1.5rem; border-radius: 0.75rem; border: none; border-bottom: 1px solid rgba(255,255,255,0.06); margin-bottom: 0; }
+    .project-row:last-child { border-bottom: none; }
+  }
+
+  .project-row:hover { background: rgba(251,191,36,0.03); }
+
+  /* Number */
+  .project-number {
+    display: flex; align-items: flex-start; padding-top: 0.2rem;
+  }
+  .num-text {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem; font-weight: 700;
+    color: rgba(251,191,36,0.4);
+    letter-spacing: 0.05em;
+    transition: color 0.25s ease;
+  }
+  .project-row:hover .num-text { color: #fbbf24; }
+
+  /* Body */
+  .project-header {
+    display: flex; align-items: flex-start; justify-content: space-between;
+    gap: 1rem; margin-bottom: 0.75rem;
+  }
+  .project-name {
+    font-size: 1.25rem; font-weight: 600; color: #e4e4e7;
+    line-height: 1.3; transition: color 0.25s ease;
+  }
+  @media (min-width: 768px) { .project-name { font-size: 1.5rem; } }
+  .project-row:hover .project-name { color: #fafafa; }
+
+  .project-links { display: flex; gap: 0.5rem; flex-shrink: 0; }
+  .icon-btn {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 36px; height: 36px; border-radius: 50%;
+    border: 1px solid rgba(255,255,255,0.1);
+    color: #71717a;
+    transition: all 0.25s ease;
+  }
+  .icon-btn:hover {
+    border-color: rgba(251,191,36,0.5); color: #fbbf24;
+    background: rgba(251,191,36,0.08);
+    transform: translateY(-2px);
+  }
+
+  .project-desc {
+    font-size: 0.9375rem; line-height: 1.7; color: #71717a;
+    font-weight: 300; margin-bottom: 1rem;
+  }
+
+  .project-tags { display: flex; flex-wrap: wrap; gap: 0.375rem; }
+  .tag {
+    padding: 0.3rem 0.7rem; border-radius: 0.3rem;
+    border: 1px solid rgba(255,255,255,0.07);
+    background: rgba(255,255,255,0.03);
+    font-size: 0.75rem; font-weight: 500; color: #52525b;
+    transition: all 0.2s ease;
+  }
+  .project-row:hover .tag { border-color: rgba(251,191,36,0.15); color: #a1a1aa; }
+
+  /* Border anim */
+  .project-border-anim {
+    position: absolute; bottom: 0; left: 0;
+    height: 1px; width: 0;
+    background: linear-gradient(90deg, #fbbf24, rgba(251,191,36,0.3));
+    transition: width 0.4s cubic-bezier(.16,1,.3,1);
+  }
+  .project-row:hover .project-border-anim { width: 100%; }
+
+  /* Reveal */
+  .reveal-up {
+    opacity: 0; transform: translateY(36px);
+    transition: opacity 0.8s cubic-bezier(.16,1,.3,1) var(--delay, 0s),
+                transform 0.8s cubic-bezier(.16,1,.3,1) var(--delay, 0s);
+  }
+  .reveal-up.visible { opacity: 1; transform: translateY(0); }
 </style>
 
 <script>
-  const observer = new IntersectionObserver(
-    (entries) => entries.forEach((e) => {
-      if (e.isIntersecting) {
-        e.target.classList.add("visible");
-        const cards = e.target.querySelectorAll(".project-card");
-        cards.forEach((card, i) => {
-          (card as HTMLElement).style.setProperty("--delay", `${i * 0.08}s`);
-        });
-      }
-    }),
+  const io = new IntersectionObserver(
+    entries => entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); } }),
     { threshold: 0.06 }
   );
-  document.querySelectorAll(".reveal-section").forEach((el) => observer.observe(el));
+  document.querySelectorAll('#projects .reveal-up').forEach(el => io.observe(el));
 </script>

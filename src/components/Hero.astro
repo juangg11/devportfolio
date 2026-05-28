@@ -1,173 +1,218 @@
 ---
-import { siteConfig } from "../config";
+import { siteConfig } from '../config';
+import type { Lang } from '../i18n';
+import { t } from '../i18n';
+interface Props { lang: Lang }
+const { lang } = Astro.props;
 ---
 
-<div
+<section
   id="hero"
-  class="relative isolate overflow-hidden bg-[#fafafa] py-24 md:h-screen"
-  style={`--accent-color: ${siteConfig.accentColor}`}
+  class="hero-section relative min-h-screen flex flex-col justify-center overflow-hidden"
+  aria-label="Hero"
 >
-  <!-- Subtle noise texture overlay -->
-  <div class="absolute inset-0 -z-10 hero-noise"></div>
+  <!-- Animated mesh background -->
+  <div class="hero-bg absolute inset-0 -z-10"></div>
 
-  <!-- Gradient blob -->
-  <div
-    class="absolute inset-0 -z-10 hero-gradient"
-    style={`background: radial-gradient(ellipse 900px 700px at -5% -10%, ${siteConfig.accentColor}30 0%, ${siteConfig.accentColor}12 35%, transparent 70%)`}
-  ></div>
+  <!-- Scanline overlay texture -->
+  <div class="scanlines absolute inset-0 -z-10 pointer-events-none"></div>
 
-  <!-- Animated grid -->
-  <svg
-    aria-hidden="true"
-    class="absolute inset-0 -z-10 size-full"
-  >
-    <defs>
-      <pattern
-        id="hero-grid"
-        x="0"
-        y="0"
-        width="60"
-        height="60"
-        patternUnits="userSpaceOnUse"
+  <!-- Orbiting accent ring -->
+  <div class="orbit-ring absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 -z-10 pointer-events-none"></div>
+
+  <!-- Corner decorations -->
+  <div class="corner-tl absolute top-8 left-8 w-10 h-10 border-t-2 border-l-2 border-amber-400/40"></div>
+  <div class="corner-br absolute bottom-8 right-8 w-10 h-10 border-b-2 border-r-2 border-amber-400/40"></div>
+
+  <!-- Main content -->
+  <div class="relative z-10 mx-auto w-full max-w-7xl px-6 sm:px-10 md:px-16 pt-28 pb-20">
+
+    <!-- Status badge -->
+    <div class="hero-tag inline-flex items-center gap-2.5 px-4 py-2 rounded-full mb-10 border border-amber-400/25 bg-amber-400/8 backdrop-blur-sm">
+      <span class="w-2 h-2 rounded-full bg-amber-400 pulse-dot"></span>
+      <span class="text-amber-300 text-sm font-medium tracking-wide">{t(lang, 'hero.available')}</span>
+    </div>
+
+    <!-- Greeting -->
+    <p class="hero-greeting text-zinc-400 text-lg sm:text-xl font-light tracking-widest uppercase mb-4 font-mono">
+      {t(lang, 'hero.greeting')}
+    </p>
+
+    <!-- Name — split letter animation -->
+    <h1 class="hero-name font-display leading-[0.88] tracking-tighter mb-6" aria-label={`I'm ${siteConfig.name}`}>
+      <span class="text-block block text-zinc-100">I'm</span>
+      <span class="name-accent text-block block">{siteConfig.name}</span>
+    </h1>
+
+    <!-- Title typewriter -->
+    <p class="hero-title text-zinc-300 text-xl sm:text-2xl md:text-3xl font-light max-w-2xl leading-relaxed mb-10">
+      {siteConfig.title}
+    </p>
+
+    <!-- CTAs -->
+    <div class="hero-cta flex flex-wrap items-center gap-4">
+      <a
+        href="#projects"
+        class="cta-primary inline-flex items-center gap-3 px-7 py-3.5 rounded-full font-semibold text-zinc-950 bg-amber-400 hover:bg-amber-300 transition-all duration-300 text-sm tracking-wide"
       >
-        <path d="M 60 0 L 0 0 0 60" fill="none" stroke="rgba(0,0,0,0.04)" stroke-width="1"/>
-      </pattern>
-    </defs>
-    <rect fill="url(#hero-grid)" width="100%" height="100%" />
-  </svg>
+        {t(lang, 'hero.cta')}
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+        </svg>
+      </a>
 
-  <!-- Floating code symbols -->
-  <div class="absolute inset-0 -z-10 overflow-hidden pointer-events-none">
-    {['</>','{}','()','[]','=>','::'].map((sym, i) => (
-      <span
-        class="floating-sym absolute font-mono text-sm select-none"
-        style={`color: ${siteConfig.accentColor}; opacity: 0.12; top: ${15 + i * 13}%; left: ${60 + (i % 3) * 12}%; animation-delay: ${i * 0.8}s;`}
-      >{sym}</span>
-    ))}
-  </div>
-
-  <div class="h-full mx-auto p-8 sm:p-12 md:p-24 flex items-center">
-    <div>
-      <div class="hero-tag inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-gray-200 bg-white/60 backdrop-blur-sm mb-8 text-sm text-gray-500 font-medium">
-        <span class="w-1.5 h-1.5 rounded-full animate-pulse" style={`background-color: ${siteConfig.accentColor}`}></span>
-        Available for work
-      </div>
-
-      <h2 class="hero-sub text-xl sm:text-2xl md:text-3xl font-light tracking-wide text-gray-400">
-        Hello there 👋
-      </h2>
-      <h1 class="hero-title mt-3 sm:mt-4 text-pretty text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold tracking-tight text-gray-900 leading-[0.95]">
-        I'm <span class="accent-text" style={`color: ${siteConfig.accentColor}`}>{siteConfig.name}</span>
-      </h1>
-      <p class="hero-desc mt-5 sm:mt-7 text-pretty text-lg sm:text-xl md:text-2xl font-light text-gray-500 max-w-xl leading-relaxed">
-        {siteConfig.title}
-      </p>
-
-      <div class="hero-cta mt-8 sm:mt-10 flex items-center gap-4">
-        <a
-          href="#about"
-          class="cta-btn inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-white text-sm font-semibold transition-all duration-300"
-          style={`background-color: ${siteConfig.accentColor}`}
-        >
-          View my work
-          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
-          </svg>
-        </a>
+      <!-- Social icons -->
+      <div class="flex items-center gap-3 ml-2">
+        {siteConfig.social?.github && (
+          <a href={siteConfig.social.github} target="_blank" rel="noopener noreferrer" aria-label="GitHub" class="social-btn">
+            <svg class="w-4.5 h-4.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M9 19c-4.3 1.4-4.3-2.5-6-3m12 5v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6 0 0 0-1.3-3.2 4.2 4.2 0 0 0-.1-3.2s-1.1-.3-3.5 1.3a12.3 12.3 0 0 0-6.2 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.4 5.4 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/>
+              <path d="M9 18c-4.51 2-5-2-7-2"/>
+            </svg>
+          </a>
+        )}
+        {siteConfig.social?.linkedin && (
+          <a href={siteConfig.social.linkedin} target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" class="social-btn">
+            <svg class="w-4.5 h-4.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M8 11v5M8 8v.01M12 16v-5M16 16v-3a2 2 0 1 0-4 0"/>
+              <rect x="3" y="3" width="18" height="18" rx="4"/>
+            </svg>
+          </a>
+        )}
+        {siteConfig.social?.email && (
+          <a href={`mailto:${siteConfig.social.email}`} aria-label="Email" class="social-btn">
+            <svg class="w-4.5 h-4.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="5" width="18" height="14" rx="2"/>
+              <path d="M3 7l9 6 9-6"/>
+            </svg>
+          </a>
+        )}
       </div>
     </div>
   </div>
 
-  <div
-    class="hero-socials absolute bottom-0 left-0 right-0 p-8 sm:p-12 md:p-24 flex gap-x-5 text-gray-400"
-  >
-    {
-      siteConfig.social?.email && (
-        <a
-          href={`mailto:${siteConfig.social.email}`}
-          aria-label="Email"
-          class="social-icon transition-all duration-300 hover:text-[var(--accent-color)] hover:-translate-y-0.5"
-        >
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5 sm:h-6 sm:w-6">
-            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-            <path d="M3 7a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v10a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-10z" />
-            <path d="M3 7l9 6l9 -6" />
-          </svg>
-        </a>
-      )
-    }
-    {
-      siteConfig.social?.linkedin && (
-        <a href={siteConfig.social.linkedin} target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" class="social-icon transition-all duration-300 hover:text-[var(--accent-color)] hover:-translate-y-0.5">
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5 sm:h-6 sm:w-6">
-            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-            <path d="M8 11v5" /><path d="M8 8v.01" /><path d="M12 16v-5" />
-            <path d="M16 16v-3a2 2 0 1 0 -4 0" />
-            <path d="M3 7a4 4 0 0 1 4 -4h10a4 4 0 0 1 4 4v10a4 4 0 0 1 -4 4h-10a4 4 0 0 1 -4 -4z" />
-          </svg>
-        </a>
-      )
-    }
-    {
-      siteConfig.social?.twitter && (
-        <a href={siteConfig.social.twitter} target="_blank" rel="noopener noreferrer" aria-label="Twitter" class="social-icon transition-all duration-300 hover:text-[var(--accent-color)] hover:-translate-y-0.5">
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5 sm:h-6 sm:w-6">
-            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-            <path d="M4 4l11.733 16h4.267l-11.733 -16z" />
-            <path d="M4 20l6.768 -6.768m2.46 -2.46l6.772 -6.772" />
-          </svg>
-        </a>
-      )
-    }
-    {
-      siteConfig.social?.github && (
-        <a href={siteConfig.social.github} target="_blank" rel="noopener noreferrer" aria-label="GitHub" class="social-icon transition-all duration-300 hover:text-[var(--accent-color)] hover:-translate-y-0.5">
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5 sm:h-6 sm:w-6">
-            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-            <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
-          </svg>
-        </a>
-      )
-    }
+  <!-- Scroll indicator -->
+  <div class="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 scroll-hint">
+    <span class="text-zinc-600 text-xs tracking-widest uppercase font-mono">{t(lang, 'hero.scroll')}</span>
+    <div class="scroll-line w-px h-12 bg-gradient-to-b from-amber-400/60 to-transparent"></div>
   </div>
-</div>
+</section>
 
 <style>
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(24px); }
-    to   { opacity: 1; transform: translateY(0); }
+  /* Typography */
+  .hero-name {
+    font-size: clamp(3.5rem, 12vw, 10rem);
+    font-family: 'Playfair Display', Georgia, serif;
   }
-  @keyframes fadeIn {
-    from { opacity: 0; }
-    to   { opacity: 1; }
-  }
-  @keyframes floatSym {
-    0%, 100% { transform: translateY(0px) rotate(0deg); }
-    50%       { transform: translateY(-12px) rotate(3deg); }
-  }
-
-  .hero-tag   { animation: fadeUp 0.6s ease-out 0.1s both; }
-  .hero-sub   { animation: fadeUp 0.6s ease-out 0.25s both; }
-  .hero-title { animation: fadeUp 0.7s ease-out 0.4s both; }
-  .hero-desc  { animation: fadeUp 0.6s ease-out 0.55s both; }
-  .hero-cta   { animation: fadeUp 0.6s ease-out 0.7s both; }
-  .hero-socials { animation: fadeIn 0.8s ease-out 0.9s both; }
-
-  .floating-sym {
-    animation: floatSym 6s ease-in-out infinite;
-    font-size: 1.1rem;
-    letter-spacing: 0.05em;
+  .text-block { display: block; }
+  .name-accent {
+    background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 40%, #fde68a 70%, #f59e0b 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
   }
 
-  .cta-btn:hover {
+  /* Background mesh */
+  .hero-bg {
+    background-color: #0a0a0c;
+    background-image:
+      radial-gradient(ellipse 80% 60% at 70% 30%, rgba(251,191,36,0.07) 0%, transparent 60%),
+      radial-gradient(ellipse 50% 40% at 20% 80%, rgba(251,191,36,0.04) 0%, transparent 55%);
+  }
+
+  /* Scanlines */
+  .scanlines {
+    background-image: repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 2px,
+      rgba(255,255,255,0.012) 2px,
+      rgba(255,255,255,0.012) 4px
+    );
+  }
+
+  /* Orbiting ring */
+  .orbit-ring {
+    width: 600px;
+    height: 600px;
+    border-radius: 50%;
+    border: 1px solid rgba(251,191,36,0.06);
+    animation: orbitSpin 30s linear infinite;
+  }
+  .orbit-ring::before {
+    content: '';
+    position: absolute;
+    top: -4px;
+    left: 50%;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #fbbf24;
+    transform: translateX(-50%);
+    box-shadow: 0 0 12px 4px rgba(251,191,36,0.4);
+  }
+  @keyframes orbitSpin {
+    from { transform: translate(-50%, -50%) rotate(0deg); }
+    to   { transform: translate(-50%, -50%) rotate(360deg); }
+  }
+
+  /* Pulse dot */
+  .pulse-dot {
+    box-shadow: 0 0 0 0 rgba(251,191,36,0.4);
+    animation: pulsate 2s ease-out infinite;
+  }
+  @keyframes pulsate {
+    0%   { box-shadow: 0 0 0 0 rgba(251,191,36,0.5); }
+    70%  { box-shadow: 0 0 0 8px rgba(251,191,36,0); }
+    100% { box-shadow: 0 0 0 0 rgba(251,191,36,0); }
+  }
+
+  /* Social buttons */
+  .social-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 1px solid rgba(255,255,255,0.12);
+    color: #a1a1aa;
+    transition: all 0.25s ease;
+  }
+  .social-btn:hover {
+    border-color: rgba(251,191,36,0.5);
+    color: #fbbf24;
+    background: rgba(251,191,36,0.08);
     transform: translateY(-2px);
-    box-shadow: 0 8px 24px -4px var(--accent-color, #3b82f6)44;
   }
 
-  .hero-noise {
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.025'/%3E%3C/svg%3E");
-    background-repeat: repeat;
-    background-size: 200px;
-    opacity: 0.5;
+  /* CTA */
+  .cta-primary {
+    box-shadow: 0 0 32px -8px rgba(251,191,36,0.4);
+  }
+  .cta-primary:hover {
+    box-shadow: 0 0 44px -4px rgba(251,191,36,0.55);
+    transform: translateY(-2px);
+  }
+
+  /* Scroll hint */
+  .scroll-hint { animation: fadeIn 1s ease 1.5s both; }
+  @keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
+
+  /* Entrance animations */
+  .hero-tag     { animation: slideUp 0.7s cubic-bezier(.16,1,.3,1) 0.1s both; }
+  .hero-greeting{ animation: slideUp 0.7s cubic-bezier(.16,1,.3,1) 0.2s both; }
+  .hero-name    { animation: slideUp 0.9s cubic-bezier(.16,1,.3,1) 0.35s both; }
+  .hero-title   { animation: slideUp 0.7s cubic-bezier(.16,1,.3,1) 0.55s both; }
+  .hero-cta     { animation: slideUp 0.7s cubic-bezier(.16,1,.3,1) 0.7s both; }
+
+  @keyframes slideUp {
+    from { opacity:0; transform: translateY(40px); }
+    to   { opacity:1; transform: translateY(0); }
+  }
+
+  /* Corner decors */
+  .corner-tl, .corner-br {
+    animation: fadeIn 1.2s ease 0.8s both;
   }
 </style>
