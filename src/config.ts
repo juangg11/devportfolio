@@ -21,6 +21,13 @@ export const siteConfig = {
       skills: ["React", "Express", "Node.js", "Next.js"],
     },
     {
+      name: "AI Automation Layer for Magento 2",
+      description:
+        "Backend de automatizacion para ecommerce Magento 2 basado en agentes de IA, colas de trabajo, workers y auditoria persistente. El objetivo del proyecto no es demostrar un prompt aislado, sino simular una capa operativa que una empresa podria desplegar para reducir trabajo manual de catalogo, SEO e inventario.",
+      github: "https://github.com/juangg11/AI-Automation-Layer-for-Magento-2",
+      skills: ["Python", "Node.js", "PostgreSQL", "FastApi", "Redis", "Docker"],
+    },
+    {
       name: "CRM Modular",
       description:
         "Sistema CRM completo para la gestión de negocios como peluquerías, enfocado en la automatización de citas y gestión de clientes. Incluye calendario interactivo, control de disponibilidad en tiempo real y panel de métricas. Implementé una arquitectura multi-tenant con persistencia en base de datos relacional, optimizando la consistencia de reservas y evitando conflictos de horario.",
@@ -43,9 +50,9 @@ export const siteConfig = {
       title: "AI ANALYTICS & AUTOMATION",
       dateRange: "Feb 2026 - Jun 2026",
       bullets: [
-        "Built and launched MVP product from scratch using React and Node.js",
-        "Implemented CI/CD pipeline reducing deployment time by 60%",
-        "Collaborated with product team to define technical requirements",
+        "Formación oficial en Camunda 7, obteniendo certificación en modelado de procesos BPMN",
+        "Resolución de incidencias de Camunda.",
+        "Creación de un sistema de automatizacion de resolucion de incidencias con IA, reduciendo el tiempo de resolución.",
       ],
     },
     {
@@ -53,9 +60,9 @@ export const siteConfig = {
       title: "Full Stack Developer",
       dateRange: "May 2025 - Jun 2025",
       bullets: [
-        "Developed responsive web applications for 20+ clients",
-        "Improved site performance scores by 35% on average",
-        "Introduced modern JavaScript frameworks to legacy codebases",
+        "Desarrollo del ciclo de vida completo de una aplicación web para la gestión de casos legales, utilizando React para el frontend y Node.js con Express para el backend.",
+        "Implementación de una base de datos relacional con PostgreSQL para almacenar información de clientes, casos y documentos legales, optimizando consultas para mejorar el rendimiento.",
+        "Integración de autenticación segura con JWT, garantizando la protección de datos sensibles y el acceso controlado a la plataforma.",
       ],
     },
   ],
@@ -65,9 +72,9 @@ export const siteConfig = {
       degree: "Desarrollo de Aplicaciones Web",
       dateRange: "2024 - 2026",
       achievements: [
-        "Graduated Magna Cum Laude with 3.8 GPA",
-        "Dean's List all semesters",
-        "President of Computer Science Club",
+        "Graduado con buenas calificaciones, destacando en asignaturas clave como Programación, Bases de Datos y Desarrollo de Aplicaciones.",
+        "Aprendizaje de multiples lenguajes de programación, incluyendo JavaScript, Java y Python, con proyectos prácticos que abarcan desde aplicaciones web hasta sistemas de gestión de bases de datos.",
+        "Frameworks y herramientas: React, FastApi, SpringBoot, Angular, Nest.js, Express, Spring Boot, Docker, AWS, GitHub, aplicados en proyectos académicos y personales.",
       ],
     }
   ],
