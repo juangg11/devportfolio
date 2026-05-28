@@ -18,7 +18,7 @@ export const siteConfig = {
         "Red social basada en comunidades y foros con interacción en tiempo real mediante WebSockets. Permite la creación de posts, comentarios anidados y un sistema de chat dinámico entre usuarios. Desarrollada con MERN (React, Express, Node.js) y una arquitectura escalable para la gestión de contenido multimedia.",
       link: "https://walter-weld-one.vercel.app",
       github: "https://github.com/juangg11/Walter",
-      skills: ["React", "Express", "Node.js", "Next.js"],
+      skills: ["React", "Node.js", "Express.js", "SQL", "WebSocket", "Motion" ],
     },
     {
       name: "AI Automation Layer for Magento 2",
