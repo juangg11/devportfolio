@@ -1,96 +1,81 @@
-// ============================================================
-// PORTFOLIO CONFIGURATION
-// Edit this file to personalize your portfolio.
-// ============================================================
-
 export const siteConfig = {
-  // ── Identity ───────────────────────────────────────────────
-  name: "Alex Rivera",
-  title: "Full-Stack Engineer · Building scalable products that matter.",
-  accentColor: "#fbbf24",   // kept for legacy compat; design uses CSS vars
-
-  // ── About ─────────────────────────────────────────────────
-  aboutMe:
-    "I'm a software engineer with 4+ years of experience shipping products " +
-    "from idea to production. I thrive at the intersection of clean architecture " +
-    "and great user experience — writing the kind of code that teams are happy to " +
-    "maintain and users love to use.",
-
-  // ── Skills ────────────────────────────────────────────────
-  skills: [
-    "TypeScript", "React", "Next.js", "Node.js",
-    "PostgreSQL", "Redis", "Docker", "Kubernetes",
-    "AWS", "GraphQL", "Tailwind CSS", "Astro",
-    "Python", "CI/CD", "System Design",
-  ],
-
-  // ── Social ────────────────────────────────────────────────
+  name: "Juan Garcia",
+  title: "Full Stack Developer",
+  description: "Portfolio website of Juan Garcia",
+  accentColor: "#b31dd8",
   social: {
-    email:    "alex@example.com",
-    github:   "https://github.com/alexrivera",
-    linkedin: "https://linkedin.com/in/alexrivera",
-    twitter:  "https://twitter.com/alexrivera",
+    email: "jg200470@gmail.com",
+    linkedin: "https://www.linkedin.com/in/juan-garcia-garcia-37464a408/",
+    github: "https://github.com/juangg11",
   },
-
-  // ── Projects ──────────────────────────────────────────────
+  aboutMe:
+    "Desarrollador Full Stack en formación constante, con una sólida base técnica en JavaScript, Java y C#. Me apasiona transformar problemas complejos en soluciones en forma de aplicaciones web.",
+  skills: ["Javascript", "React", "Node.js", "Express", "Java", "AWS", "Docker", "Next.js", "TypeScript", "Spring Boot", "C#"],
   projects: [
     {
-      name:        "Orbit — Real-time Analytics",
-      description: "End-to-end analytics platform processing 50M+ events/day. Built event ingestion pipeline, live dashboard with WebSockets, and query engine with sub-100ms p99 latency.",
-      skills:      ["TypeScript", "ClickHouse", "Kafka", "React", "Redis"],
-      github:      "https://github.com",
-      link:        "https://example.com",
+      name: "Walter",
+      description:
+        "Red social basada en comunidades y foros con interacción en tiempo real mediante WebSockets. Permite la creación de posts, comentarios anidados y un sistema de chat dinámico entre usuarios. Desarrollada con MERN (React, Express, Node.js) y una arquitectura escalable para la gestión de contenido multimedia.",
+      link: "https://walter-weld-one.vercel.app",
+      github: "https://github.com/juangg11/Walter",
+      skills: ["React", "Node.js", "Express.js", "SQL", "WebSocket", "Motion" ],
     },
     {
-      name:        "Forge — AI Code Review",
-      description: "GitHub App that uses LLMs to perform automated code review, detects anti-patterns, and suggests refactors with explainability. Used by 500+ developers.",
-      skills:      ["Python", "FastAPI", "OpenAI", "GitHub API", "PostgreSQL"],
-      github:      "https://github.com",
+      name: "AI Automation Layer for Magento 2",
+      description:
+        "Backend de automatizacion para ecommerce Magento 2 basado en agentes de IA, colas de trabajo, workers y auditoria persistente. El objetivo del proyecto no es demostrar un prompt aislado, sino simular una capa operativa que una empresa podria desplegar para reducir trabajo manual de catalogo, SEO e inventario.",
+      github: "https://github.com/juangg11/AI-Automation-Layer-for-Magento-2",
+      skills: ["Python", "Node.js", "PostgreSQL", "FastApi", "Redis", "Docker"],
     },
     {
-      name:        "Atlas — Distributed Task Queue",
-      description: "Open-source job scheduling library for Node.js with priority queues, retries, cron support, and a self-hosted monitoring UI. 1.2k GitHub stars.",
-      skills:      ["Node.js", "Redis", "TypeScript", "Docker"],
-      github:      "https://github.com",
-      link:        "https://example.com",
+      name: "CRM Modular",
+      description:
+        "Sistema CRM completo para la gestión de negocios como peluquerías, enfocado en la automatización de citas y gestión de clientes. Incluye calendario interactivo, control de disponibilidad en tiempo real y panel de métricas. Implementé una arquitectura multi-tenant con persistencia en base de datos relacional, optimizando la consistencia de reservas y evitando conflictos de horario.",
+      link: "https://crm-react-bay.vercel.app",
+      github: "https://github.com/juangg11/CRM-React",
+      skills: ["React", "Node.js", "Supabase"],
+    },
+    {
+      name: "Gamebox",
+      description:
+        "Plataforma de gestión de catálogos inspirada en Letterboxd, integrada con la API de RAWG para el descubrimiento de videojuegos. Incluye sistemas de puntuación personalizada y reseñas persistentes mediante Supabase. Resolví la sincronización de datos externos con bases de datos relacionales optimizando la integridad de cada entrada.",
+      link: "https://gamebox-sigma.vercel.app",
+      github: "https://github.com/juangg11/Gamebox",
+      skills: ["React", "Node.js", "Supabase", "API"],
     },
   ],
-
-  // ── Experience ────────────────────────────────────────────
   experience: [
     {
-      title:     "Senior Software Engineer",
-      company:   "Acme Corp",
-      dateRange: "2022 – Present",
+      company: "Viewnext",
+      title: "AI ANALYTICS & AUTOMATION",
+      dateRange: "Feb 2026 - Jun 2026",
       bullets: [
-        "Led migration of monolith to microservices, reducing deployment time by 60%.",
-        "Architected real-time notification system handling 200k concurrent connections.",
-        "Mentored a team of 4 junior engineers and established code review practices.",
+        "Formación oficial en Camunda 7, obteniendo certificación en modelado de procesos BPMN",
+        "Resolución de incidencias de Camunda.",
+        "Creación de un sistema de automatizacion de resolucion de incidencias con IA, reduciendo el tiempo de resolución.",
       ],
     },
     {
-      title:     "Software Engineer",
-      company:   "Startup XYZ",
-      dateRange: "2020 – 2022",
+      company: "Marin & Moya Abogados",
+      title: "Full Stack Developer",
+      dateRange: "May 2025 - Jun 2025",
       bullets: [
-        "Built core B2B SaaS features used by 3,000+ paying customers.",
-        "Reduced API response times by 40% through query optimization and caching.",
-        "Integrated Stripe billing, achieving PCI-DSS compliance.",
+        "Desarrollo del ciclo de vida completo de una aplicación web para la gestión de casos legales, utilizando React para el frontend y Node.js con Express para el backend.",
+        "Implementación de una base de datos relacional con PostgreSQL para almacenar información de clientes, casos y documentos legales, optimizando consultas para mejorar el rendimiento.",
+        "Integración de autenticación segura con JWT, garantizando la protección de datos sensibles y el acceso controlado a la plataforma.",
       ],
     },
   ],
-
-  // ── Education ─────────────────────────────────────────────
   education: [
     {
-      degree:    "B.Sc. Computer Science",
-      school:    "Universidad Politécnica de Madrid",
-      dateRange: "2016 – 2020",
+      school: "IES Celia Viñas",
+      degree: "Desarrollo de Aplicaciones Web",
+      dateRange: "2024 - 2026",
       achievements: [
-        "Graduated with honours — GPA 3.9/4.0",
-        "Final thesis on distributed consensus algorithms (Raft implementation).",
-        "Teaching assistant for Data Structures & Algorithms.",
+        "Graduado con buenas calificaciones, destacando en asignaturas clave como Programación, Bases de Datos y Desarrollo de Aplicaciones.",
+        "Aprendizaje de multiples lenguajes de programación, incluyendo JavaScript, Java y Python, con proyectos prácticos que abarcan desde aplicaciones web hasta sistemas de gestión de bases de datos.",
+        "Frameworks y herramientas: React, FastApi, SpringBoot, Angular, Nest.js, Express, Spring Boot, Docker, AWS, GitHub, aplicados en proyectos académicos y personales.",
       ],
-    },
+    }
   ],
 };
